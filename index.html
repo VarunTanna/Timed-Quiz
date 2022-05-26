@@ -1,66 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>Timed Quiz</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Quiz</title>
 </head>
-
 <body>
-    <header>
-        <h3 id="viewhighscores">View High Scores</h3>
-        <h3 id="timer">Time:</h3>
-    </header>
-    <section id="start">
-        <h1>How much do you know about Elon Musk?</h1>
-        <h2>Need to know's:</h2>
-        <p>For every question you get wrong you will lose time! Goodluck!</p>
-        <button id="startbtn">Start Quiz</button>
-    </section>
-    <section id="quiz">
-        <div id="questions">
-            <div id="answers"></div>
-            <p>Questions</p>
-            <button id="a" onclick="answer('a')">A</button>
-            <button id="b" onclick="answer('b')">B</button>
-            <button id="c" onclick="answer('c')">C</button>
-            <button id="d" onclick="answer('d')">D</button>
-            <div id=result></div>
-        </div>
-    </section>
-    <div id="gameover">
-        <section>
-            <div id=finalScore></div>
-            <input type="text" size="30" placeholder="Insert your names for the high score!" name="intials" id="intials"/>
-            <button id="score">Score</button>
-        </section>
-     </div> 
-     <div id="container"></div>
-     <div id="highscorePage"></div>
-     <section>
-         <div id="highscoreHeader"></div>
-         <h3>Intials</h3>
-         <h3>Score</h3>
-     </section>
-     <div>
-        <label id="highscoreIntials"></label>
-        <label id="highscoreScore"></label>
-     </div>
-     <section id="endGameBtns">
-         <button id="playAgain" onclick="replay()">Play Again</button>
-         <button id="clearhighScore" onclick="clearScore">Clear Highscores</button>
-     </section>
-     
+    <header id="timer">Time</header>
+  <section id="start">
+    <h2>Start Quiz</h2>
+    <button id="qui">Begin</button>
+  </section>
+  <section id="quiz">
+    <h2 id="title">Questions</h2>
+    <div id="questions">
+    <div id="answers"></div>
 
-
-
-
-
-     <script src="./script.js>"></script>
-
+    </div>
+  </section>
+  <section id="end">
+    <h2>Enter Initials</h2>
+    <input type="text" />
+    <button>Submit</button>
+  </section>
+  <script src="./script.js"></script>
 </body>
-
 </html>

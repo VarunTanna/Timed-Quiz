@@ -1,34 +1,7 @@
-// grab all the elements 
-var viewHighScores = document.getElementById("viewhighscore");
-var time = document.getElementById("timer");
-var starts = document.getElementById("start");
-var startButton = document.getElementById("startBtn");
-var quizs = document.getElementById("quiz");
-var questions = document.getElementById("quetion");
-var buttonA = document.getElementById("a");
-var buttonB = document.getElementById("b");
-var buttonC = document.getElementById("c");
-var buttonD = document.getElementById("d");
-var results = document.getElementById("result");
-var gameOver = document.getElementById("gameover");
-var final = document.getElementById("finalScore");
-var intial = document.getElementById("initials");
-var scores = document.getElementById("score");
-var containers = document.getElementById("container");
-var highScorePage = document.getElementById("highscorePage");
-var highScoreHeader = document.getElementById("highscoreHeader");
-var highScoreIntials = document.getElementById("highscoreInitals");
-var highScoreScore = document.getElementById("highscoreScore");
-var endgameBtns = document.getElementById("endGameBtns");
-var playagain = document.getElementById("playAgain");
-var clearHighScore = document.getElementById("clearhighScore");
-var answer = document.getElementById("answers");
-
-//quiz questions and answers objecct
 const quizQuestions = [
     {
         question: "In which country was Elon Musk born?",
-        answers: {
+        choicesEl: {
             1: "Romania",
             2: "Canada",
             3: "South Africa",
@@ -39,7 +12,7 @@ const quizQuestions = [
 
     {
         question: "ELon taught himself computer programming at what age?",
-        answers: {
+        choicesEl: {
             1: "8",
             2: "10",
             3: "12",
@@ -61,7 +34,7 @@ const quizQuestions = [
 
     {
         question: "In 1999, Elon founded X.com, which merged with Confinity 2 years later to become which online business?",
-        answers: {
+        choicesEl: {
             1: "Google",
             2: "PayPal",
             3: "Twitter",
@@ -82,24 +55,64 @@ const quizQuestions = [
     },
 ];
 
-// // event listener on the start quiz.
+var state = "start";
+
+var student = document.getElementById("student-names");
+var grade = document.getElementById("grades");
+var comment = document.getElementById("msg");
+var saveButton = document.getElementById("save");
+var savedName = document.getElementById("saved-name");
+
+saveButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  var studentGrade = {
+    student: student.value,
+    grade: grade.value,
+    comment: comment.value.trim()
+  };
+
+  var grades = JSON.parse(localStorage.getItem("studentGrades")) || [];
+
+  grades.push(studentGrade);
+
+  localStorage.setItem("studentGrades", JSON.stringify(grades));
+  renderMessage();
+
+});
+
+function renderMessage() {
+  var grades = JSON.parse(localStorage.getItem("studentGrades")) || [];
+  var lastGrade = grades[grades.length - 1];
+
+  if (lastGrade !== null) {
+    document.querySelector(".message").textContent = lastGrade.student +
+      " received a/an " + lastGrade.grade
+  }
+}
 
 
-//hide that and then show questions inside a function
 
-//event listener on all answer buttons. only add one.
+function displayState() {
+    if (state === "start") {
+        starts.style.display = "block"
+        quizs.style.display = "none"
+        gameOver.style.display = "none"
+    }
 
-// seprate function to change the question to the next question 
+    if (state === "quizs") {
+        starts.style.display = "none"
+        quizs.style.display = "block"
+        gameOver.style.display = "none"
+    }
 
-//// compare the buttton they pick to the right answer
+    if (state === "gameOver") {
+        starts.style.display = "none"
+        quizs.style.display = "none"
+        gameOver.style.display = "block"
+    }
+}
 
-//set up timer last
-
-// take the time they have left as their score
-
-// save that as their high score in local storage
-
-// key and the score saved to local storage
-
-// no page manu other than hidding and unhiding things 
-
+function init() {
+    displayState();
+}
