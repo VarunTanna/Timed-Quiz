@@ -1,44 +1,34 @@
 Script.js 
 
 // grab all the elements 
+var state = "quiz";
 var viewHighScores = document.getElementById("viewhighscore");
-var timer = document.getElementById("timer");
-var quizEl = document.querySelector("#quiz");
 var startEl = document.querySelectorAll("#start");
-var startButton = document.getElementById("startBtn");
+var quizEl = document.querySelector("#quiz");
+var endEl = document.querySelector("#end");
+var startButton = document.querySelector("#start button");
 var quizs = document.getElementById("quiz");
-var questionsEl = document.getElementById("quetion");
+var questionsEl = document.getElementById("quetions");
 var buttonA = document.getElementById("a");
 var buttonB = document.getElementById("b");
 var buttonC = document.getElementById("c");
 var buttonD = document.getElementById("d");
-var results = document.getElementById("result");
-var gameOver = document.getElementById("gameover");
 var final = document.getElementById("finalScore");
-var intial = document.getElementById("initials");
-var scores = document.getElementById("score");
-var containers = document.getElementById("container");
-var highScorePage = document.getElementById("highscorePage");
-var highScoreHeader = document.getElementById("highscoreHeader");
-var highScoreIntials = document.getElementById("highscoreInitals");
-var highScoreScore = document.getElementById("highscoreScore");
-var endgameBtns = document.getElementById("endGameBtns");
-var playagain = document.getElementById("playAgain");
-var endEl = document.querySelector("#end");
 var answerEl = document.getElementById("answer");
-var timerRemaining = 90;
-var state = "quiz";
+var timeRemaining = 90;
 position = 0;
+var timer = document.getElementById("timer");
+
 
 //quiz questions and answers objecct
 const quizQuestions = [
     {
         question: "In which country was Elon Musk born?",
          
-            1: "Romania",
-            2: "Canada",
-            3: "South Africa",
-            4: "America",
+            choiceA: "Romania",
+            choiceB: "Canada",
+            choiceC: "South Africa",
+            choiceD: "America",
     
         correctAnswer: "South Africa",
     },
@@ -46,10 +36,10 @@ const quizQuestions = [
     {
         question: "ELon taught himself computer programming at what age?",
         
-            1: "8",
-            2: "10",
-            3: "12",
-            4: "14",
+            choiceA: "8",
+            choiceB: "10",
+            choiceC: "12",
+            choiceD: "14",
         
         correctAnswer: "10",
     },
@@ -57,10 +47,10 @@ const quizQuestions = [
     {
         question: "At age 12, Elon sold his first computer program for $500. It was a video game called what?",
         
-            1: "Blastar",
-            2: "Space invaders",
-            3: "Pacman",
-            4: "Asteroids",
+            choiceA: "Blastar",
+            choiceB: "Space invaders",
+            choiceC: "Pacman",
+            choiceD: "Asteroids",
     
         correctAnswer: "Blastar",
     },
@@ -68,10 +58,10 @@ const quizQuestions = [
     {
         question: "In 1999, Elon founded X.com, which merged with Confinity 2 years later to become which online business?",
         
-            1: "Google",
-            2: "PayPal",
-            3: "Twitter",
-            4: "Facebook",
+            choiceA: "Google",
+            choiceB: "PayPal",
+            choiceC: "Twitter",
+            choiceD: "Facebook",
     
         correctAnswer: "PayPal",
     },
@@ -79,10 +69,10 @@ const quizQuestions = [
     {
         question: "How much is Elon Musk worth?",
         
-            1: "176.7 Billon",
-            2: "204.8 Billon",
-            3: "218.1 Billon",
-            4: "236.5 Billon",
+            choiceA: "176.7 Billon",
+            choiceB: "204.8 Billon",
+            choiceC: "218.1 Billon",
+            choiceD: "236.5 Billon",
         
         correctAnswer: "218.1 Billon",
     },
@@ -98,7 +88,7 @@ function displayQuestions() {
     var buttonD = document.createElement("button");
     var questionView = document.createElement("p");
 
-    questionView.textContent = myQuestions[position].question;
+    questionView.textContent = quizQuestions[position].question;
     buttonA.textContent = quizQuestions[position].choiceA;
     buttonB.textContent = quizQuestions[position].choiceB;
     buttonC.textContent = quizQuestions[position].choiceC;
@@ -133,12 +123,12 @@ answerEl.addEventListener("click", function (event) {
 
 //hide that and then show questions inside a function
 function displayMessage() {
-    timer.textContent - "Time Left" + timerRemaining;
+    timer.textContent = "Time Left" + timeRemaining;
 
     function setTime() {
     displayMessage();
     var timerInterval = setInterval(function() {
-        timerRemaining--;
+        timeRemaining--;
         displayMessage();
 
         if (timeRemaining === 0){
@@ -159,13 +149,13 @@ function displayScore() {
 // display state which allows us to break the webapge up in different stats or pages. got help from instructor
 
 function displayState() {
-    if (state === "start") {
+    if (state === 'start') {
         startEl.style.display = "block";
         quizEl.style.display = "none";
         gameOver.style.display = "none";
     }
 
-    if (state === "quizs") {
+    if (state === 'quiz') {
         startEl.style.display = "none";
         quizEl.style.display = "block";
         gameOver.style.display = "none";
@@ -173,7 +163,7 @@ function displayState() {
         setTime();
     }
 
-    if (state === "end") {
+    if (state === 'end') {
         startEl.style.display = "none";
         quizEl.style.display = "none";
         gameOver.style.display = "block";
