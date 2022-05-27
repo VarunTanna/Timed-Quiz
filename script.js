@@ -130,6 +130,12 @@ function displayMessage() {
     }, 1000);
 }
 
+function displayScore() {
+    if (state = "end") {
+        playScore.textContent("Score:" + timerRemaining);
+    }
+}
+
 // display state which allows us to break the webapge up in different stats or pages. got help from instructor
 
 function displayState() {
@@ -151,6 +157,7 @@ function displayState() {
         starts.style.display = "none"
         quizs.style.display = "none"
         gameOver.style.display = "block"
+        displayScore()
     }
 }
 
