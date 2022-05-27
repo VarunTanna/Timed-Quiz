@@ -19,4 +19,4 @@ Used Javascript to create a quiz game!
 
 ## Visuals
 
-![Horiseon](images/updated quiz.png)
+![Timed-Quiz](images/updatedquiz.png)
