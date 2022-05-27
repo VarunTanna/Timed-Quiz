@@ -152,30 +152,29 @@ function displayScore() {
 
 function displayState() {
     if (state === 'start') {
-        startEl.style.display = "block";
-        quizEl.style.display = "none";
-        gameOver.style.display = "none";
+        startEl.style.display = 'block';
+        quizEl.style.display = 'none';
+        endEl.style.display = 'none';
     }
-
     if (state === 'quiz') {
-        startEl.style.display = "none";
-        quizEl.style.display = "block";
-        gameOver.style.display = "none";
+        startEl.style.display = 'none';
+        quizEl.style.display = 'block';
+        endEl.style.display = 'none';
         displayQuestions();
         setTime();
     }
-
     if (state === 'end') {
-        startEl.style.display = "none";
-        quizEl.style.display = "none";
-        gameOver.style.display = "block";
+        startEl.style.display = 'none';
+        quizEl.style.display = 'none';
+        endEl.style.display = 'block';
         displayScore();
-    };
+    }
 }
-
+//
 function init() {
     displayState();
-}
+
+};
 // moved evetn listenr to the bottom as instructed by teacher
 startBtn.addEventListener("click", function () {
     state = "quiz";
