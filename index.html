@@ -4,24 +4,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  <link rel="stylesheet" href="style.css">
   <title>Code Quiz</title>
 </head>
 <body>
-    <header id="timer">Time</header>
+    <header id="viewHighScores">View High Scores</header>
+    <div id="timer">Timer</div>
   <section id="start">
-    <h2>Start Quiz</h2>
-    <button id="qui">Begin</button>
+    <h2>How well do you know Elon Musk?</h2>
+    <h2>Everytime you answer a question wrong you lose time!</h2>
+    <button>Start</button>
   </section>
   <section id="quiz">
     <h2 id="title">Questions</h2>
-    <div id="questions">
-    <div id="answers"></div>
-
-    </div>
+    <div id="questions"></div>
+    <div id="answer"></div>
   </section>
   <section id="end">
     <h2>Enter Initials</h2>
     <input type="text" />
+    <div id="finalScore">Final Score:</div>
     <button>Submit</button>
   </section>
   <script src="./script.js"></script>
