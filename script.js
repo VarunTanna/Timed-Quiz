@@ -3,7 +3,8 @@ Script.js
 // grab all the elements 
 var viewHighScores = document.getElementById("viewhighscore");
 var timer = document.getElementById("timer");
-var starts = document.getElementById("start");
+var quizEl = document.querySelector("#quiz");
+var startEl = document.querySelectorAll("#start");
 var startButton = document.getElementById("startBtn");
 var quizs = document.getElementById("quiz");
 var questionsEl = document.getElementById("quetion");
@@ -23,11 +24,11 @@ var highScoreIntials = document.getElementById("highscoreInitals");
 var highScoreScore = document.getElementById("highscoreScore");
 var endgameBtns = document.getElementById("endGameBtns");
 var playagain = document.getElementById("playAgain");
-var clearHighScore = document.getElementById("clearhighScore");
+var endEl = document.querySelector("#end");
 var answerEl = document.getElementById("answer");
 var timerRemaining = 90;
-var state = "starts";
-var currentQuestion = 0;
+var state = "quiz";
+position = 0;
 
 //quiz questions and answers objecct
 const quizQuestions = [
@@ -111,6 +112,25 @@ function displayQuestions() {
 
 }          
 
+answerEl.addEventListener("click", function (event) {
+    if (event.target.type === "score") {
+        if (event.target.textContent === quizQuestions[position].correctAnswer) 
+            alert("Good Job!")
+    } else {
+        alert("Incorrect! You lost time!")
+        timeRemaining = timeRemaining - 15;
+
+    }
+    position++;
+    if (position < quizQuestions.length) {
+        displayQuestions();
+    } else {
+        state = "end";
+        displayState();
+    }
+
+});
+
 //hide that and then show questions inside a function
 function displayMessage() {
     timer.textContent - "Time Left" + timerRemaining;
@@ -132,7 +152,7 @@ function displayMessage() {
 
 function displayScore() {
     if (state = "end") {
-        playScore.textContent("Score:" + timerRemaining);
+        playScore.textContent("Score:" + timeRemaining);
     }
 }
 
@@ -140,25 +160,25 @@ function displayScore() {
 
 function displayState() {
     if (state === "start") {
-        starts.style.display = "block"
-        quizs.style.display = "none"
-        gameOver.style.display = "none"
+        startEl.style.display = "block";
+        quizEl.style.display = "none";
+        gameOver.style.display = "none";
     }
 
     if (state === "quizs") {
-        starts.style.display = "none"
-        quizs.style.display = "block"
-        gameOver.style.display = "none"
-        displayQuestion()
-        setTime()
+        startEl.style.display = "none";
+        quizEl.style.display = "block";
+        gameOver.style.display = "none";
+        displayQuestions();
+        setTime();
     }
 
-    if (state === "gameOver") {
-        starts.style.display = "none"
-        quizs.style.display = "none"
-        gameOver.style.display = "block"
-        displayScore()
-    }
+    if (state === "end") {
+        startEl.style.display = "none";
+        quizEl.style.display = "none";
+        gameOver.style.display = "block";
+        displayScore();
+    };
 }
 
 function init() {
@@ -166,13 +186,12 @@ function init() {
 }
 // moved evetn listenr to the bottom as instructed by teacher
 starts.addEventListener("click", function() {
-    state = "quizs";
+    state = "quiz";
     displayState();
-    renderQuestions();
 });
 
 gameOver.addEventListener("click", function () {
-    state = 'gameOver';
+    state = "end";
     displayState();
   });
 
