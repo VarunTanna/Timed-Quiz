@@ -1,14 +1,14 @@
-Script.js
+// Script.js
 
 // grab all the elements 
-var state = "quiz";
+var state = "start";
 var viewHighScores = document.getElementById("viewhighscore");
-var startEl = document.querySelectorAll("#start");
+var startEl = document.querySelector("#start");
 var quizEl = document.querySelector("#quiz");
 var endEl = document.querySelector("#end");
-var startBtn = document.querySelector("#start button");
-var quizTitle = document.querySelector("#quiz #title");
-var questionsEl = document.getElementById("quetions");
+var startButton = document.querySelector("#startBtn");
+// var quizTitle = document.querySelector("#quizTitle");
+var questionsEl = document.getElementById("questions");
 var buttonA = document.getElementById("a");
 var buttonB = document.getElementById("b");
 var buttonC = document.getElementById("c");
@@ -21,7 +21,7 @@ var timer = document.getElementById("timer");
 
 
 //quiz questions and answers objecct
-const quizQuestions = [
+var quizQuestions = [
     {
         question: "In which country was Elon Musk born?",
 
@@ -77,76 +77,7 @@ const quizQuestions = [
         correctAnswer: "218.1 Billon",
     },
 ];
-// created buttons for our page thur j/s  recevied help from a friend for set up
-function displayQuestions() {
-    questionsEl = "";
-    answerEl = "";
 
-    var buttonA = document.createElement("button");
-    var buttonB = document.createElement("button");
-    var buttonC = document.createElement("button");
-    var buttonD = document.createElement("button");
-    var questionView = document.createElement("p");
-
-    questionView.textContent = quizQuestions[position].question;
-    buttonA.textContent = quizQuestions[position].choiceA;
-    buttonB.textContent = quizQuestions[position].choiceB;
-    buttonC.textContent = quizQuestions[position].choiceC;
-    buttonD.textContent = quizQuestions[position].choiceD;
-
-    questionsEl.appendChild(questionView);
-    answerEl.appendChild(buttonA);
-    answerEl.appendChild(buttonB);
-    answerEl.appendChild(buttonC);
-    answerEl.appendChild(buttonD);
-
-}
-
-answerEl.addEventListener("click", function (event) {
-    if (event.target.type === "score") {
-        if (event.target.textContent === quizQuestions[position].correctAnswer)
-            alert("Good Job!")
-    } else {
-        alert("Incorrect! You lost time!")
-        timeRemaining = timeRemaining - 15;
-
-    }
-    position++;
-    if (position < quizQuestions.length) {
-        displayQuestions();
-    } else {
-        state = "end";
-        displayState();
-    }
-
-});
-
-//hide that and then show questions inside a function
-function displayMessage() {
-    timer.textContent = "Time Left" + timeRemaining;
-}
-
-
-function setTime() {
-    displayMessage();
-    var timerInterval = setInterval(function () {
-        timeRemaining--;
-        displayMessage();
-
-        if (timeRemaining === 0) {
-            alert("Ran out of time!")
-            state = "gameOver";
-            clearInterval(timerInterval);
-            displayState();
-        }
-    }, 1000);
-}
-
-function displayScore() {
-    if (state = "end") {
-        playScore.textContent("Score:" + timeRemaining);
-    }
-}
 
 // display state which allows us to break the webapge up in different stats or pages. got help from instructor
 
@@ -170,20 +101,93 @@ function displayState() {
         displayScore();
     }
 }
+
+// created buttons for our page thur j/s  recevied help from a friend for set up
+function displayQuestions() {
+    questionsEl.innerHTML = "";
+    answerEl.innerHTML = "";
+
+    var buttonA = document.createElement("button");
+    var buttonB = document.createElement("button");
+    var buttonC = document.createElement("button");
+    var buttonD = document.createElement("button");
+    var questionView = document.createElement("p");
+
+    questionView.textContent = quizQuestions[position].question;
+    buttonA.textContent = quizQuestions[position].choiceA;
+    buttonB.textContent = quizQuestions[position].choiceB;
+    buttonC.textContent = quizQuestions[position].choiceC;
+    buttonD.textContent = quizQuestions[position].choiceD;
+
+    questionsEl.appendChild(questionView);
+    answerEl.appendChild(buttonA);
+    answerEl.appendChild(buttonB);
+    answerEl.appendChild(buttonC);
+    answerEl.appendChild(buttonD);
+
+}
+
+
+
+//hide that and then show questions inside a function
+function displayMessage() {
+    timer.textContent = "Time Left" + timeRemaining;
+}
+
+
+function setTime() {
+    displayMessage();
+    var timerInterval = setInterval(function () {
+        timeRemaining--;
+        displayMessage();
+
+        if (timeRemaining === 0) {
+            state = "gameOver";
+            clearInterval(timerInterval);
+            displayState();
+        }
+    }, 1000);
+}
+
+function displayScore() {
+    if (state = "end") {
+        playScore.textContent("Score:" + timeRemaining);
+    }
+}
+
 //
 function init() {
     displayState();
 
 };
 // moved evetn listenr to the bottom as instructed by teacher
-startBtn.addEventListener("click", function () {
+startButton.addEventListener("click", function () {
     state = "quiz";
     displayState();
 });
 
-quizTitle.addEventListener("click", function () {
-    state = "end";
-    displayState();
+// quizTitle.addEventListener("click", function () {
+//     state = "end";
+//     displayState();
+// });
+
+answerEl.addEventListener("click", function (event) {
+    if (event.target.type === "submit") {
+        if (event.target.textContent === quizQuestions[position].correctAnswer) {
+        } else {
+            
+            timeRemaining = timeRemaining - 15;
+    
+        }
+        position++;
+        if (position < quizQuestions.length) {
+            displayQuestions();
+        } else {
+            state = "end";
+            displayState();
+        }
+    }
+
 });
 
 
