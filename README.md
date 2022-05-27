@@ -7,9 +7,7 @@
 
 
 ## Description
-no real discripition here. had help from classmates and teaching staff and still cant get anything to work.
-i will strive to do better.
-
+Used Javascript to create a quiz game!
 
 ## Respository 
 
@@ -21,4 +19,4 @@ i will strive to do better.
 
 ## Visuals
 
-![Horiseon](images/Code-Quiz.png)
+![Horiseon](images/updated quiz.png)
