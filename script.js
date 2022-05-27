@@ -1,4 +1,4 @@
-Script.js 
+Script.js
 
 // grab all the elements 
 var state = "quiz";
@@ -6,8 +6,8 @@ var viewHighScores = document.getElementById("viewhighscore");
 var startEl = document.querySelectorAll("#start");
 var quizEl = document.querySelector("#quiz");
 var endEl = document.querySelector("#end");
-var startButton = document.querySelector("#start button");
-var quizs = document.getElementById("quiz");
+var startBtn = document.querySelector("#start button");
+var quizTitle = document.querySelector("#quiz #title");
 var questionsEl = document.getElementById("quetions");
 var buttonA = document.getElementById("a");
 var buttonB = document.getElementById("b");
@@ -16,7 +16,7 @@ var buttonD = document.getElementById("d");
 var final = document.getElementById("finalScore");
 var answerEl = document.getElementById("answer");
 var timeRemaining = 90;
-position = 0;
+var position = 0;
 var timer = document.getElementById("timer");
 
 
@@ -24,56 +24,56 @@ var timer = document.getElementById("timer");
 const quizQuestions = [
     {
         question: "In which country was Elon Musk born?",
-         
-            choiceA: "Romania",
-            choiceB: "Canada",
-            choiceC: "South Africa",
-            choiceD: "America",
-    
+
+        choiceA: "Romania",
+        choiceB: "Canada",
+        choiceC: "South Africa",
+        choiceD: "America",
+
         correctAnswer: "South Africa",
     },
 
     {
         question: "ELon taught himself computer programming at what age?",
-        
-            choiceA: "8",
-            choiceB: "10",
-            choiceC: "12",
-            choiceD: "14",
-        
+
+        choiceA: "8",
+        choiceB: "10",
+        choiceC: "12",
+        choiceD: "14",
+
         correctAnswer: "10",
     },
 
     {
         question: "At age 12, Elon sold his first computer program for $500. It was a video game called what?",
-        
-            choiceA: "Blastar",
-            choiceB: "Space invaders",
-            choiceC: "Pacman",
-            choiceD: "Asteroids",
-    
+
+        choiceA: "Blastar",
+        choiceB: "Space invaders",
+        choiceC: "Pacman",
+        choiceD: "Asteroids",
+
         correctAnswer: "Blastar",
     },
 
     {
         question: "In 1999, Elon founded X.com, which merged with Confinity 2 years later to become which online business?",
-        
-            choiceA: "Google",
-            choiceB: "PayPal",
-            choiceC: "Twitter",
-            choiceD: "Facebook",
-    
+
+        choiceA: "Google",
+        choiceB: "PayPal",
+        choiceC: "Twitter",
+        choiceD: "Facebook",
+
         correctAnswer: "PayPal",
     },
 
     {
         question: "How much is Elon Musk worth?",
-        
-            choiceA: "176.7 Billon",
-            choiceB: "204.8 Billon",
-            choiceC: "218.1 Billon",
-            choiceD: "236.5 Billon",
-        
+
+        choiceA: "176.7 Billon",
+        choiceB: "204.8 Billon",
+        choiceC: "218.1 Billon",
+        choiceD: "236.5 Billon",
+
         correctAnswer: "218.1 Billon",
     },
 ];
@@ -100,11 +100,11 @@ function displayQuestions() {
     answerEl.appendChild(buttonC);
     answerEl.appendChild(buttonD);
 
-}          
+}
 
 answerEl.addEventListener("click", function (event) {
     if (event.target.type === "score") {
-        if (event.target.textContent === quizQuestions[position].correctAnswer) 
+        if (event.target.textContent === quizQuestions[position].correctAnswer)
             alert("Good Job!")
     } else {
         alert("Incorrect! You lost time!")
@@ -124,14 +124,16 @@ answerEl.addEventListener("click", function (event) {
 //hide that and then show questions inside a function
 function displayMessage() {
     timer.textContent = "Time Left" + timeRemaining;
+}
 
-    function setTime() {
+
+function setTime() {
     displayMessage();
-    var timerInterval = setInterval(function() {
+    var timerInterval = setInterval(function () {
         timeRemaining--;
         displayMessage();
 
-        if (timeRemaining === 0){
+        if (timeRemaining === 0) {
             alert("Ran out of time!")
             state = "gameOver";
             clearInterval(timerInterval);
@@ -175,18 +177,18 @@ function init() {
     displayState();
 }
 // moved evetn listenr to the bottom as instructed by teacher
-starts.addEventListener("click", function() {
+startBtn.addEventListener("click", function () {
     state = "quiz";
     displayState();
 });
 
-gameOver.addEventListener("click", function () {
+quizTitle.addEventListener("click", function () {
     state = "end";
     displayState();
-  });
+});
 
 
- init();
+init();
 
 
  //event listener on all answer buttons. only add one.
